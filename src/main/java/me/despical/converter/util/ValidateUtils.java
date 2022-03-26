@@ -5,8 +5,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.net.URL;
-
 /**
  * @author Despical
  * <p>
@@ -14,17 +12,8 @@ import java.net.URL;
  */
 public class ValidateUtils {
 
-	public static boolean isURL(String url) {
-		try {
-			new URL(url);
-			return true;
-		} catch (Exception ignored) {
-			return false;
-		}
-	}
-
 	public static void displayError(String message) {
-		displayAlert(message, "Hata", Alert.AlertType.ERROR, ButtonType.CLOSE);
+		displayAlert(message, "Error", Alert.AlertType.ERROR, ButtonType.CLOSE);
 	}
 
 	public static void displayAlert(String message, String title, Alert.AlertType alertType, ButtonType buttonType) {

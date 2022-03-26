@@ -135,8 +135,6 @@ public class MPConverter extends Application {
 					request.setOption("audio-format", "mp3");
 				}
 
-				// https://www.youtube.com/watch?v=ymg_HPKm2co
-
 				DownloadScene downloadScene = new DownloadScene(scene, request, output, url);
 				downloadScene.showScene(stage);
 			}

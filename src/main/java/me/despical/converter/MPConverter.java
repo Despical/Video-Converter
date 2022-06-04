@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -27,15 +28,17 @@ import java.io.IOException;
 public class MPConverter extends Application {
 
 	private Stage stage;
-	private TextField textField;
 	private File downloadPath;
 	private String targetType;
 
+	private final TextField textField;
 	private final GridPane gridPane;
 	private final Scene scene;
+	private final ControlMenu controlMenu;
 
 	public MPConverter() {
-		this.scene = new Scene(gridPane = new GridPane(), 365, 275);
+		this.controlMenu = new ControlMenu(textField = new TextField("Paste the video address with https:// or http://"));
+		this.scene = new Scene(new VBox(controlMenu.getMenuBar(), gridPane = new GridPane()),365, 295);
 
 		start(new Stage());
 	}
@@ -63,13 +66,12 @@ public class MPConverter extends Application {
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setVgap(5);
 		gridPane.setHgap(10);
-		gridPane.setPadding(new Insets(5, 0, 0, 5));
+		gridPane.setPadding(new Insets(10, 0, 0, 5));
 	}
 
 	private void initTexts() {
 		String information = "Paste the video address with https:// or http://";
 
-		textField = new TextField(information);
 		textField.setOnMouseClicked(event -> {
 			if (textField.getText().equals(information)) {
 				textField.clear();
@@ -112,7 +114,7 @@ public class MPConverter extends Application {
 		downloadButton.setVisible(false);
 		downloadButton.setOnMouseClicked(event -> {
 			if (targetType == null) {
-				ValidateUtils.displayError("Converting type can not be null!");
+				ValidateUtils.displayError("You must select a file format to convert!");
 				return;
 			}
 
